@@ -66,13 +66,13 @@ stages:
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: 'acr-sc'
               kubernetesServiceConnection: 'aks-sc'
-              namespace: 'tailspinspacegame-aks'
+              namespace: 'default'
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: deploy
               kubernetesServiceConnection: 'aks-sc'
-              namespace: 'tailspinspacegame-aks'
+              namespace: 'default'
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
                 $(Pipeline.Workspace)/manifests/service.yml
